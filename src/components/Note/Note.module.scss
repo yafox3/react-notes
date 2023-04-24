@@ -1,9 +1,10 @@
 .note {
 	padding: 10px 10px 10px 30px;
 	background: #cfcfcf76;
+	user-select: none;
 	width: 100%;
-	cursor: pointer;
 	transition: background .1s linear;
+	position: relative;
 
 	&:not(:last-child) {
 		border-bottom: 1px solid #99999947;
@@ -15,10 +16,6 @@
 
 	&:last-child {
 		border-radius: 0 0 10px 10px;
-	}
-
-	&:hover {
-		background: #cfcfcfa7;
 	}
 
 	&__title {
@@ -38,6 +35,35 @@
 			white-space: nowrap;
 			overflow: hidden; 
 			text-overflow: ellipsis;
+		}
+	}
+
+	&__tools {
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		transform: translateY(-50%);
+		font-size: 20px;
+		display: flex;
+		gap: 15px;
+
+		opacity: 0;
+		transition: opacity .2s ease-in-out;
+		color: orange;
+
+		i {
+			cursor: pointer;
+			&:last-child {
+				color:red;
+			}
+		}
+	}
+
+	&:hover {
+		background: #b8b8b8a7;
+
+		.note__tools {
+			opacity: 1;
 		}
 	}
 }

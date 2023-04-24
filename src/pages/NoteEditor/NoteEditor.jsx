@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import LocalStorage from '../../utils/localstorage'
 import styles from './NoteEditor.module.scss'
 
 const NoteEditor = () => {
@@ -16,9 +17,10 @@ const NoteEditor = () => {
 					text
 				}
 			}
-			const notes = JSON.parse(localStorage.getItem('note')  || '[]')
+			
+			const notes = LocalStorage.get('note')
 			notes.push(newNote)
-			localStorage.setItem('note', JSON.stringify(notes))
+			LocalStorage.post('note', notes)
 		}
 	}
 

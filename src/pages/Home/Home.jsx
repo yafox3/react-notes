@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import NotesList from '../../components/NotesList/NotesList'
 import Search from '../../components/UI/Search/Search'
+import LocalStorage from '../../utils/localstorage'
 import styles from './Home.module.scss'
 
 const Home = () => {
@@ -9,7 +10,7 @@ const Home = () => {
 	const [searchQuery, setSearchQuery] = useState('')
 
 	useEffect(() => {
-		setNotes(JSON.parse(localStorage.getItem('note')  || '[]'))
+		setNotes(LocalStorage.get('note'))
 	}, [])
 
 	const searchedNotes = useMemo(() => {
@@ -18,6 +19,14 @@ const Home = () => {
 
 	function onSearch(event) {
 		setSearchQuery(event.target.value)
+	}
+
+	function editNote() {
+	}
+
+	function removeNote(note) {
+		LocalStorage.remove('note', note.id)
+		setNotes(LocalStorage.get('note'))
 	}
 
 	return (
@@ -35,7 +44,7 @@ const Home = () => {
 
 			{searchedNotes.length === 0 
 				? <h5 style={{textAlign: 'center'}}>Заметок не найдено</h5>
-				: <NotesList notes={searchedNotes} />
+				: <NotesList removeNote={removeNote} editNote={editNote} notes={searchedNotes} />
 			}
 
 		</div>
