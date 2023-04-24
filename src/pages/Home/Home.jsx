@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import NotesList from '../../components/NotesList/NotesList'
 import Search from '../../components/UI/Search/Search'
 import styles from './Home.module.scss'
@@ -9,10 +9,14 @@ const Home = () => {
 		{id: 2, title: 'Вторая', body: { date: new Date().toLocaleDateString(), text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.' }},
 		{id: 3, title: 'Третья', body: { date: new Date().toLocaleDateString(), text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.' }},
 	])
-	const [search, setSearch] = useState('')
+	const [searchQuery, setSearchQuery] = useState('')
+
+	const searchedNotes = useMemo(() => {
+		return notes.filter(note => note.title.toLowerCase().includes(searchQuery.toLowerCase()))
+	}, [searchQuery, notes])
 
 	function onSearch(event) {
-		setSearch(event.target.value)
+		setSearchQuery(event.target.value)
 	}
 
 	return (
@@ -25,9 +29,13 @@ const Home = () => {
 					Написать <i className="bi bi-pencil-square"></i>
 				</button>
 			</div>
-			<Search onSearch={onSearch} value={search}/>
+			<Search onSearch={onSearch} value={searchQuery}/>
 
-			<NotesList notes={notes} />
+			{searchedNotes.length === 0 
+				? <h5 style={{textAlign: 'center'}}>По вашему запросу ничего не найдено</h5>
+				: <NotesList notes={searchedNotes} />
+			}
+
 		</div>
 	)
 }
