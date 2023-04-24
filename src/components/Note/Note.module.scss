@@ -1,0 +1,38 @@
+.note {
+	padding: 10px 10px 10px 30px;
+	background: #cfcfcf76;
+	width: 100%;
+	cursor: pointer;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid #99999947;
+	}
+
+	&:first-child {
+		border-radius: 10px 10px 0 0;
+	}
+
+	&:last-child {
+		border-radius: 0 0 10px 10px;
+	}
+
+	&__title {
+		font-size: 18px;
+		font-weight: 700;
+		padding: 0;
+		margin: 0;
+	}
+
+	&__body {
+		display: flex;
+		gap: 10px;
+		color: #999;
+		font-size: 14px;
+
+		span.body__text {
+			white-space: nowrap;
+			overflow: hidden; 
+			text-overflow: ellipsis;
+		}
+	}
+}

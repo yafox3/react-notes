@@ -1,0 +1,22 @@
+.home {
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 10px;
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			color: rgb(75, 75, 75);
+		}
+
+		i {
+			font-size: 18px;
+			color: rgb(156, 156, 156);
+		}
+	}
+}
