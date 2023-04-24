@@ -1,0 +1,26 @@
+.editor {
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		i {
+			font-size: 18px;
+			color: rgb(250, 244, 244);
+			padding: 0 10px;
+		}
+	}
+
+	&__form {
+		padding-top: 30px;
+		font-size: 1.5rem;
+
+		input, textarea {
+			font-size: 1rem;
+			&:focus {
+				box-shadow: none;
+			}
+		}
+	}
+}

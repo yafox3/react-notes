@@ -3,6 +3,7 @@
 	background: #cfcfcf76;
 	width: 100%;
 	cursor: pointer;
+	transition: background .1s linear;
 
 	&:not(:last-child) {
 		border-bottom: 1px solid #99999947;
@@ -14,6 +15,10 @@
 
 	&:last-child {
 		border-radius: 0 0 10px 10px;
+	}
+
+	&:hover {
+		background: #cfcfcfa7;
 	}
 
 	&__title {

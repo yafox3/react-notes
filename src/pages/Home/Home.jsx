@@ -1,15 +1,16 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import NotesList from '../../components/NotesList/NotesList'
 import Search from '../../components/UI/Search/Search'
 import styles from './Home.module.scss'
 
 const Home = () => {
-	const [notes, setNotes] = useState([
-		{id: 1, title: 'Первая', body: { date: new Date().toLocaleDateString(), text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.' }},
-		{id: 2, title: 'Вторая', body: { date: new Date().toLocaleDateString(), text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.' }},
-		{id: 3, title: 'Третья', body: { date: new Date().toLocaleDateString(), text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.' }},
-	])
+	const [notes, setNotes] = useState([])
 	const [searchQuery, setSearchQuery] = useState('')
+
+	useEffect(() => {
+		setNotes(JSON.parse(localStorage.getItem('note')  || '[]'))
+	}, [])
 
 	const searchedNotes = useMemo(() => {
 		return notes.filter(note => note.title.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -23,16 +24,17 @@ const Home = () => {
 		<div className={styles.home}>
 			<div className={styles.home__header}>
 				<h1><strong>Заметки</strong></h1>
-				<button 
-					className='btn btn-warning'
+				<NavLink
+					to='/editor'
+					className='btn btn-dark'
 				>
-					Написать <i className="bi bi-pencil-square"></i>
-				</button>
+					<i className="bi bi-pencil-square"></i>
+				</NavLink>
 			</div>
 			<Search onSearch={onSearch} value={searchQuery}/>
 
 			{searchedNotes.length === 0 
-				? <h5 style={{textAlign: 'center'}}>По вашему запросу ничего не найдено</h5>
+				? <h5 style={{textAlign: 'center'}}>Заметок не найдено</h5>
 				: <NotesList notes={searchedNotes} />
 			}
 
