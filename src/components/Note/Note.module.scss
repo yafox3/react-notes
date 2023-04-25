@@ -43,7 +43,7 @@
 		top: 50%;
 		right: 10px;
 		transform: translateY(-50%);
-		font-size: 22px;
+		font-size: 20px;
 		display: flex;
 		align-items: center;
 		gap: 5px;
@@ -77,6 +77,12 @@
 
 		.note__tools {
 			opacity: 1;
+		}
+
+		.note__body {
+			span.body__text {
+				max-width: 70%;
+			}
 		}
 	}
 }
