@@ -1,27 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import LocalStorage from '../../utils/localstorage'
 import styles from './NoteEditor.module.scss'
 
-const NoteEditor = () => {
+const NoteEditor = ({currentNote, isEdit, setIsEdit}) => {
+	const [note, setNote] = useState({title: currentNote?.title ?? '', text: currentNote.body?.text ?? ''})
 	const [title, setTitle] = useState('')
 	const [text, setText] = useState('')
+	
+	useEffect(() => {
+		if (isEdit) {
+			setTitle(note.title)
+			setText(note.text)
+			
+		}
+	}, [])
 
 	function createNote() {
-		if (title && text) {
-			const newNote = {
-				id: new Date(),
-				title,
-				body: {
-					date: new Date().toLocaleDateString(),
-					text
-				}
+		const newNote = {
+			id: new Date(),
+			title,
+			body: {
+				date: new Date().toLocaleDateString(),
+				text
 			}
-			
+		}
+		if (isEdit) {
+			LocalStorage.remove('note', currentNote.id)
+			const notes = LocalStorage.get('note')
+			notes.push(newNote)
+			LocalStorage.post('note', notes)
+			setIsEdit(false)
+		} else {
 			const notes = LocalStorage.get('note')
 			notes.push(newNote)
 			LocalStorage.post('note', notes)
 		}
+	}
+
+	function onTitle(event) {
+		setTitle(event.target.value)
+		setNote({title})
+	}
+
+	function onText(event) {
+		setText(event.target.value)
+		setNote({text})
 	}
 
 	return (
@@ -29,7 +53,9 @@ const NoteEditor = () => {
 			<header className={styles.editor__header}>
 				<NavLink
 					to='/'
-					className='btn btn-danger'>
+					className='btn btn-danger'
+					onClick={() => setIsEdit(false)}
+				>
 					<i className='bi bi-caret-left'></i>
 				</NavLink>
 				<h1>
@@ -60,7 +86,7 @@ const NoteEditor = () => {
 						Введите название
 					</label>
 					<input
-						onChange={e => setTitle(e.target.value)}
+						onChange={onTitle}
 						value={title}
 						type='text'
 						className='form-control'
@@ -75,7 +101,7 @@ const NoteEditor = () => {
 						Введите текст
 					</label>
 					<textarea
-						onChange={e => setText(e.target.value)}
+						onChange={onText}
 						value={text}
 						className='form-control'
 						id='text'

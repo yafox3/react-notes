@@ -1,11 +1,14 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from './Note.module.scss'
 
-const Note = ({ note, editNote, removeNote}) => {
+const Note = ({ note, editNote, removeNote }) => {
 	return (
 		<div className={styles.note}>
 			<div className={styles.note__tools}>
-				<i onClick={() => editNote(note)} className="bi bi-pencil-fill"></i>
+				<NavLink to='/editor' className={styles.edit}>
+					<i onClick={() => editNote(note)} className="bi bi-pencil-fill"></i>
+				</NavLink>
 				<i onClick={() => removeNote(note)} className="bi bi-x-square-fill"></i>
 			</div>
 			<h2 className={styles.note__title}>{note.title}</h2>

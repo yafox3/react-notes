@@ -5,7 +5,7 @@ import Search from '../../components/UI/Search/Search'
 import LocalStorage from '../../utils/localstorage'
 import styles from './Home.module.scss'
 
-const Home = () => {
+const Home = ({editNote}) => {
 	const [notes, setNotes] = useState([])
 	const [searchQuery, setSearchQuery] = useState('')
 
@@ -19,9 +19,6 @@ const Home = () => {
 
 	function onSearch(event) {
 		setSearchQuery(event.target.value)
-	}
-
-	function editNote() {
 	}
 
 	function removeNote(note) {
