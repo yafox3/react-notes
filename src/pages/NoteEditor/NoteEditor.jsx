@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import LocalStorage from '../../utils/localstorage'
 import styles from './NoteEditor.module.scss'
 
 const NoteEditor = ({currentNote, isEdit, setIsEdit}) => {
-	const [note, setNote] = useState({title: currentNote?.title ?? '', text: currentNote.body?.text ?? ''})
-	const [title, setTitle] = useState('')
-	const [text, setText] = useState('')
-	
-	useEffect(() => {
-		if (isEdit) {
-			setTitle(note.title)
-			setText(note.text)
-			
-		}
-	}, [])
+	const [title, setTitle] = useState(isEdit ? currentNote.title : '')
+	const [text, setText] = useState(isEdit ? currentNote.body.text : '')
 
 	function createNote() {
 		const newNote = {
@@ -40,12 +31,10 @@ const NoteEditor = ({currentNote, isEdit, setIsEdit}) => {
 
 	function onTitle(event) {
 		setTitle(event.target.value)
-		setNote({title})
 	}
 
 	function onText(event) {
 		setText(event.target.value)
-		setNote({text})
 	}
 
 	return (

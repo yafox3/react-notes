@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
@@ -18,7 +19,7 @@ function App() {
             <Navbar />
             <div className='container pt-4'>
                 <Routes>
-                    <Route path='/' element={<Home editNote={editNote}/>}/>
+                    <Route path='/' element={<Home editNote={editNote} currentNote={currentNote} setClear={setIsEdit}/>}/>
                     <Route path='/about' element={<About />}/>
                     <Route path='/editor' element={<NoteEditor currentNote={currentNote} isEdit={isEdit} setIsEdit={setIsEdit}/>}/>
                     <Route path='*' element={<About />} />
