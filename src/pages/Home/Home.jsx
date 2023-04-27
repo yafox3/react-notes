@@ -53,10 +53,15 @@ const Home = ({ editNote, currentNote, setClear }) => {
 				</div>
 				<Search onSearch={onSearch} value={searchQuery}/>
 	
-				{searchedNotes.length === 0 
-					? <h5 style={{textAlign: 'center'}}>Заметок не найдено</h5>
-					: <NotesList showModal={showModal} removeNote={removeNote} editNote={editNote} notes={searchedNotes} />
-				}
+				<div className={styles.home__notes}>
+					{searchedNotes.length === 0 
+						? <h5 style={{textAlign: 'center'}}>Заметок не найдено</h5>
+						: <NotesList showModal={showModal} removeNote={removeNote} editNote={editNote} notes={searchedNotes} />
+					}
+				</div>
+				<div className={styles.notes__counter}>
+					<p className='text-dark'>{LocalStorage.get('note').length} заметок</p>
+				</div>
 			</div>
 		</>
 	)

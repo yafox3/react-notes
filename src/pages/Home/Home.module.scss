@@ -1,5 +1,4 @@
-.home {
-
+.home {	
 	&__header {
 		display: flex;
 		align-items: center;
@@ -10,6 +9,35 @@
 			font-size: 18px;
 			color: rgb(156, 156, 156);
 			padding: 0 10px;
+		}
+	}
+
+	&__notes {
+		max-height: 55vh;
+		overflow-y: scroll;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+	
+	.notes__counter {
+		position: relative;
+		background: transparent;
+
+		p {
+			font-weight: 700;
+			text-align: center;
+			margin-top: 15px;
+		}
+		&::before{
+			content: '';
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			filter: blur(2px);
+			background: rgba(0, 0, 0, 0.1);
 		}
 	}
 }
