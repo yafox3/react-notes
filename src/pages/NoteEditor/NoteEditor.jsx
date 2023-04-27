@@ -13,7 +13,7 @@ const NoteEditor = ({currentNote, isEdit, setIsEdit}) => {
 			title,
 			body: {
 				date: new Date().toLocaleDateString(),
-				text
+				text: text.split('\n')
 			}
 		}
 		if (isEdit) {

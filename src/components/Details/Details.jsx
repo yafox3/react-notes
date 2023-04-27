@@ -18,7 +18,7 @@ const Details = ({ show, hideModal, note}) => {
 							{note?.title}
 						</div>
 						<div className={styles.note__text}>
-							{note?.body?.text}
+							{note?.body?.text.map((word) => <p>{word}</p>)}
 						</div>
 						<div className={styles.note__date}>
 							{note?.body?.date}
