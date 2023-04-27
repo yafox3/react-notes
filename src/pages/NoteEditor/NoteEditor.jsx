@@ -5,7 +5,7 @@ import styles from './NoteEditor.module.scss'
 
 const NoteEditor = ({currentNote, isEdit, setIsEdit}) => {
 	const [title, setTitle] = useState(isEdit ? currentNote.title : '')
-	const [text, setText] = useState(isEdit ? currentNote.body.text : '')
+	const [text, setText] = useState(isEdit ? currentNote.body.text.join() : '')
 
 	function createNote() {
 		const newNote = {
