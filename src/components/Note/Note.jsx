@@ -13,9 +13,18 @@ const Note = ({ note, editNote, removeNote, showModal }) => {
 		>
 			<div className={styles.note__tools}>
 				<NavLink to='/editor' className={styles.edit}>
-					<i onClick={() => editNote(note)} className="bi bi-pencil-fill"></i>
+					<i 
+						onClick={() => editNote(note)} 
+						className="bi bi-pencil-fill"
+					/>
 				</NavLink>
-				<i onClick={() => removeNote(note)} className="bi bi-x-square-fill"></i>
+					<i 
+					onClick={(event) => {
+						event.stopPropagation()
+						return removeNote(note)
+					}}
+					className="bi bi-x-square-fill" 
+				/>
 			</div>
 			<h2 className={styles.note__title}>{note.title}</h2>
 			<div className={styles.note__body}>

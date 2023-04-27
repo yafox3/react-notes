@@ -1,3 +1,7 @@
+.modal {
+	overflow: hidden;
+}
+
 .header__title {
 	font-weight: 700;
 	color: white;
@@ -11,10 +15,12 @@
 	&__title {
 		font-size: 20px;
 		font-weight: 700;
+		word-wrap: break-word;
 	}
 
 	&__text {
 		font-size: 18px;
+		word-wrap: break-word;
 	}
 	
 	&__date {
