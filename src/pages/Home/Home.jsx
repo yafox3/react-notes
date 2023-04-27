@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Details from '../../components/Details/Details'
+import NotesCounter from '../../components/NotesCounter/NotesCounter'
 import NotesList from '../../components/NotesList/NotesList'
 import Search from '../../components/UI/Search/Search'
 import LocalStorage from '../../utils/localstorage'
@@ -56,12 +57,10 @@ const Home = ({ editNote, currentNote, setClear }) => {
 				<div className={styles.home__notes}>
 					{searchedNotes.length === 0 
 						? <h5 style={{textAlign: 'center'}}>Заметок не найдено</h5>
-						: <NotesList showModal={showModal} removeNote={removeNote} editNote={editNote} notes={searchedNotes} />
+						: <NotesList showModal={showModal} removeNote={removeNote} editNote={editNote} notes={searchedNotes} /> 
 					}
 				</div>
-				<div className={styles.notes__counter}>
-					<p className='text-dark'>{LocalStorage.get('note').length} заметок</p>
-				</div>
+				{searchedNotes.length > 0 && <NotesCounter />}
 			</div>
 		</>
 	)

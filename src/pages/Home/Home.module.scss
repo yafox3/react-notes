@@ -15,29 +15,12 @@
 	&__notes {
 		max-height: 55vh;
 		overflow-y: scroll;
+		// box-shadow: inset 0 -3px 10px rgba(0,0,0,0.2), 
+		// 			inset 0 3px 10px rgba(0,0,0,0.2);
+		border-radius: 10px;
 
 		&::-webkit-scrollbar {
 			display: none;
-		}
-	}
-	
-	.notes__counter {
-		position: relative;
-		background: transparent;
-
-		p {
-			font-weight: 700;
-			text-align: center;
-			margin-top: 15px;
-		}
-		&::before{
-			content: '';
-			position: absolute;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			filter: blur(2px);
-			background: rgba(0, 0, 0, 0.1);
 		}
 	}
 }
