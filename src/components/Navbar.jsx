@@ -12,9 +12,6 @@ const Navbar = () => {
 					<li className="nav-item">
 						<NavLink className="nav-link" to='/'>Главная</NavLink>
 					</li>
-					<li className="nav-item">
-						<NavLink className="nav-link" to='/about'>Информация</NavLink>
-					</li>
 				</ul>
 			</div>
 		</nav>
